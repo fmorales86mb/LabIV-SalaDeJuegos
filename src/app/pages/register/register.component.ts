@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Credential } from '../../models/credential';
+import { RegisterCredential } from '../../models/registerCredential';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
 
-export class LoginComponent {
+export class RegisterComponent {
 
   public email:string = "";
-  public pass: string = "";
+  public pass1: string = "";
+  public pass2: string = "";
   public showSpinner: boolean;
   public isDisabled: boolean;
   public isRequiered: boolean;
   public hasAlert: boolean;
   public alertMessage: string = "";
+  public name: string = "";
 
   constructor(private authService: AuthService){
     this.showSpinner = false;
@@ -25,26 +27,23 @@ export class LoginComponent {
     this.hasAlert = false;
   }  
   
-  public async ClickIngresar(){
+  public async ClickRegistrarse(){
     this.showSpinner = true;
     this.isDisabled = true;
     this.isRequiered = true;
     this.hasAlert = false;
 
-    //console.log(this.email, this.pass);
-
     try{
       if(this.Validate()){
-        let credential = new Credential(this.email, this.pass);
+        let credential = new RegisterCredential(this.email, this.pass1, this.name);
 
-        if (await this.authService.Ingresar(credential)){
+        if (await this.authService.Registrarse(credential)){
 
         }
         else{
-          this.alertMessage = "email o contraseña incorrectos";
+          this.alertMessage = "Error al registrar el usuario";
           this.hasAlert = true;
-        }   
-        //console.log("userId: ", this.authService.GetUserId()); 
+        }    
       }
     }
     catch(error){
@@ -61,22 +60,40 @@ export class LoginComponent {
   private Validate():boolean{
     let isValid: boolean = true;
 
-    if(!this.email && !this.pass){
-      this.alertMessage = "Debe ingresar email y contraseña";
+    if(this.email == "" && this.pass1 == "" && this.name == ""){
+      this.alertMessage = "Debe ingresar nombre, email y contraseña";
       isValid = false;
       this.hasAlert = true;
     }
-    else if(!this.email){
+    else if(this.name == ""){
+      this.alertMessage = "Debe ingresar el nombre";
+      isValid = false;
+      this.hasAlert = true;
+    }
+    else if(this.email == ""){
       this.alertMessage = "Debe ingresar su email";
       isValid = false;
       this.hasAlert = true;
     }
-    else if(!this.pass){
+    else if(this.pass1 == ""){
       this.alertMessage = "Debe ingresar la contraseña";
+      isValid = false;
+      this.hasAlert = true;
+    }
+    else if(this.pass2 == ""){
+      this.alertMessage = "Debe confirmar la contraseña";
+      isValid = false;
+      this.hasAlert = true;
+    }    
+    else if(this.pass1 != this.pass2){
+      this.alertMessage = "Las contraseñas no coinciden";
       isValid = false;
       this.hasAlert = true;
     }
 
     return isValid;
   }
+
+  ngOnInit() {}
+
 }

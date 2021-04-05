@@ -1,0 +1,34 @@
+<div class="conteiner cont-registro">  
+  <main class="main-registro">
+
+      <div>
+        <h1>Sólo necesitamos estos datos</h1>
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]='name' placeholder="Luis Emilio Recabarren" [disabled]="isDisabled" [required]="isRequiered"> 
+        <label>Email</label>
+        <input type="email" [(ngModel)]='email' placeholder="ejemplo@mail.com" [disabled]="isDisabled" [required]="isRequiered">      
+        <label>Contraseña</label>
+        <input type="password" id="passInput" [(ngModel)]='pass1' [disabled]="isDisabled" [required]="isRequiered">
+        <label>Confirme la Contraseña</label>
+        <input type="password" id="passInput" [(ngModel)]='pass2' [disabled]="isDisabled" [required]="isRequiered">
+      </div>    
+
+      <div>
+        <button type="button" class="btn btn-primary" (click)="ClickRegistrarse()" [disabled]="isDisabled">Registrarse</button>
+      </div>              
+
+      <p>
+        <small>¿Ya tenés una cuenta? <a href="/login">Ingresá</a></small>
+      </p>
+
+      <div class="text-center" *ngIf="showSpinner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div class="alert alert-danger small" role="alert"  *ngIf="hasAlert" >
+        {{alertMessage}}
+      </div>
+  </main> 
+</div>

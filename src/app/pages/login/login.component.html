@@ -1,18 +1,30 @@
-<main class="form-signin">
-    <form>
-      
-      <h1 class="h3 mb-3 fw-normal">Sala de Juegos</h1>
-  
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com">
-        <label for="floatingInput">Email</label>
+<div class="conteiner cont-login">  
+  <main class="main-login">
+
+      <div>
+        <h1>Bienvenid@</h1>
+        <label>Email</label>
+        <input type="email" [(ngModel)]='email' [disabled]="isDisabled" placeholder="ejemplo@mail.com" [required]="isRequiered">      
+        <label>Contraseña</label>
+        <input type="password" id="passInput" [(ngModel)]='pass' [disabled]="isDisabled" [required]="isRequiered">
+      </div>    
+
+      <div>
+        <button type="button" class="btn btn-primary" (click)="ClickIngresar()" [disabled]="isDisabled">Ingresar</button>
+      </div>              
+
+      <p>
+        <small>¿No tenés cuenta todavía? <a href="/register">Registrate</a></small>
+      </p>
+
+      <div class="text-center" *ngIf="showSpinner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="clave">
-        <label for="floatingPassword">Clave</label>
+
+      <div class="alert alert-danger small" role="alert"  *ngIf="hasAlert" >
+        {{alertMessage}}
       </div>
-  
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
-      <p class="mt-5 mb-3 text-muted">FM 2021</p>
-    </form>
-</main>  
+  </main> 
+</div>

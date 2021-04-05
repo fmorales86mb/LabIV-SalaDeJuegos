@@ -21,4 +21,12 @@ export class HeaderComponent implements OnInit {
   goToHome():void{
     this.router.navigate(['/']);
   }
+
+  goToLogin():void{
+    this.router.navigate(['/login']);
+  }
+
+  goToRegister():void{
+    this.router.navigate(['/register']);
+  }
 }

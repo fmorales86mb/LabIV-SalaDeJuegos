@@ -1,0 +1,39 @@
+.main-login{
+    width: 100%;
+    max-width: 280px;
+    padding: 10px;
+    margin: auto;  
+    align-items: center;    
+    //background: chocolate;
+}
+
+.main-login input{
+    width: 95%;
+    margin: 5px;      
+}
+
+.main-login label{
+    margin: 5px;  
+}
+
+.main-login h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-login p{
+    margin-top: 10px;
+}
+
+.main-login button{
+    width: 95%;
+    margin: 5px;
+}
+
+.cont-login{
+    padding-top: 20vh;
+    padding-bottom: 100vh;
+    //background-color: burlywood;
+    align-items: center;
+    display: flex;    
+}
