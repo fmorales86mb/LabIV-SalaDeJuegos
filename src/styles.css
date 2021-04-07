@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #212529 !important;  
+    color: #fff !important;
+}
+
+body .alert {  
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.nav-link{
+    cursor: pointer;
+}
+

@@ -9,12 +9,18 @@ import { RegisterCredential } from '../models/registerCredential';
 
 export class AuthService {
   
-  private userId: any = null;
+  private userId: any;
+  private isAuth:boolean;
 
-  constructor(private authDb: AngularFireAuth) { }
+  constructor(private authDb: AngularFireAuth) {
+      this.isAuth= false;
+      this.userId = null;
+  }
 
-  public async Ingresar(credential: Credential): Promise<boolean>{           
-    return await this.Authenticate(credential);
+  public async Ingresar(credential: Credential): Promise<boolean>{  
+    this.isAuth = await this.Authenticate(credential); 
+    console.log(this.isAuth);        
+    return this.isAuth;
   }
 
   public async Registrarse(credential: RegisterCredential):Promise<boolean>{
@@ -38,6 +44,10 @@ export class AuthService {
 
   public GetUserId(){
     return this.userId;
+  }
+
+  public GetIsAuth():boolean{
+    return this.isAuth;
   }
 
   private async Authenticate(credential: Credential): Promise<boolean>{    
