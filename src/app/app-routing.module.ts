@@ -9,7 +9,7 @@ import { AuthenticateGuard } from './guard/authenticate.guard';
 
 // path: url que aparece, component: componente que va a utilizar
 const routes: Routes = [
-  {path:'', component: LoginComponent},
+  {path:'', component: HomeComponent, canActivate: [AuthenticateGuard]},
   {path:'home', component: HomeComponent, canActivate: [AuthenticateGuard]},
   {path:'login', component: LoginComponent},
   {path:'quien-soy', component: QuienSoyComponent, canActivate: [AuthenticateGuard]},

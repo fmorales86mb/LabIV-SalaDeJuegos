@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Credential } from '../../models/credential';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
   public hasAlert: boolean;
   public alertMessage: string = "";
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private router: Router){
     this.showSpinner = false;
     this.isDisabled = false;
     this.isRequiered = false;
@@ -38,7 +39,7 @@ export class LoginComponent {
         let credential = new Credential(this.email, this.pass);
 
         if (await this.authService.Ingresar(credential)){
-
+          this.router.navigate(['/home']);
         }
         else{
           this.alertMessage = "email o contraseña incorrectos";

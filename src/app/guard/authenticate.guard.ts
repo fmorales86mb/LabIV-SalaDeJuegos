@@ -22,7 +22,7 @@ export class AuthenticateGuard implements CanActivate {
       isAuth = true;
     }
     else{
-      this.router.navigate(['']);
+      this.router.navigate(['/login']);
     }
 
     return isAuth;
