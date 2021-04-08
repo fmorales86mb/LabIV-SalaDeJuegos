@@ -23,6 +23,7 @@ export class AuthenticateGuard implements CanActivate {
     }
     else{
       this.router.navigate(['/login']);
+      //isAuth = true; // sólo pruebas
     }
 
     return isAuth;

@@ -12,4 +12,7 @@ body .alert {
 .nav-link{
     cursor: pointer;
 }
+body .card-body{
+    color: #212529 !important;  
+}
 
