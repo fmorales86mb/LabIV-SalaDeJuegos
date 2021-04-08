@@ -24,14 +24,10 @@ export class AuthService {
   }
 
   public async Registrarse(credential: RegisterCredential):Promise<boolean>{
-    let isReg:boolean = false;
-
     await this.authDb.createUserWithEmailAndPassword(credential.GetEmail(), credential.GetPass())
       .then((userCredential) => {
-        // Signed in
         this.userId = userCredential.user?.uid;
-        isReg = true;
-        // ...
+        AuthService.isAuth=true;
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -39,7 +35,7 @@ export class AuthService {
         console.log(errorCode, errorMessage);     
       });
 
-    return isReg;
+    return AuthService.isAuth;
   }
 
   public Desloguearse(){

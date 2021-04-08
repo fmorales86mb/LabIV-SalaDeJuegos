@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { RegisterCredential } from '../../models/registerCredential';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent {
   public alertMessage: string = "";
   public name: string = "";
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private router: Router){
     this.showSpinner = false;
     this.isDisabled = false;
     this.isRequiered = false;
@@ -38,7 +39,7 @@ export class RegisterComponent {
         let credential = new RegisterCredential(this.email, this.pass1, this.name);
 
         if (await this.authService.Registrarse(credential)){
-
+          this.router.navigate(['/home']);
         }
         else{
           this.alertMessage = "Error al registrar el usuario";
